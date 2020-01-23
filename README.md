@@ -36,3 +36,10 @@ In Delete operation , first the node will be found and then splayed and then del
 3 . https://www.youtube.com/watch?v=qMmqOHr75b8
 
 4 . https://crab.rutgers.edu/~guyk/splay.ppt
+
+## Group Members :
+1 . Asma Hai              18B-013-CS-A
+
+2 . Zarar Ali Shah        18B-075-CS-A
+
+3 . Kainat Khurshid       18B-014-CS-A
