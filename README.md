@@ -30,6 +30,9 @@ In Delete operation , first the node will be found and then splayed and then del
 
 ## References : 
 1 . https://en.wikipedia.org/wiki/Splay_tree
+
 2 . https://www.cs.usfca.edu/~galles/visualization/SplayTree.html
+
 3 . https://www.youtube.com/watch?v=qMmqOHr75b8
+
 4 . https://crab.rutgers.edu/~guyk/splay.ppt
