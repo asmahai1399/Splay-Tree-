@@ -10,7 +10,7 @@ In Splay Trees after applying splay() operation , the tree rearranges itself in 
 ## Function 1 - Insert()
 In Insert operation new node is inserted in the tree like a Normal Binary Search Tree then after it Splaying operation is applied
 
--->> As you keep on inserting the new node it will become the root node . The last inserted will always be on root position due to continous splaying
+-->> Everytime you insert the new node it will become the root node due to splaying property
 
 ## Function 2 - Search()
 In Search operation the node is found like a normal Binary Ssearch Tree and then splayed to the root else if the node to be searched is not in the tree then the last node accessed prior to reaching the NULL is splayed and becomes the new root.
