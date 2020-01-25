@@ -1,9 +1,9 @@
-__GroupMembers__ = {'Asma Hai':'18B-013-CS-A',
+__GroupMembers = {'Asma Hai':'18B-013-CS-A',
                     'Zarar Ali Shah':'18B-075-CS-A',
                     'Kainat Khurshid':'18B-014-CS-A'}
-print()
-for keys in __GroupMembers__:
-    print(">> {} \t\t\t {}".format(keys , __GroupMembers__[keys]))
+print("\n<<------ GROUP MEMBERS ------>>\n")
+for keys in __GroupMembers:
+    print(">> {} \t\t\t {}".format(keys , __GroupMembers[keys]))
 print()
 print("Data Structures and Algorithm\nSemester III - Project\nTopic : \t\t\t\t\t''' Splay Tree '''")
 print()
@@ -33,46 +33,47 @@ class SplayTree:
     # left rotation is called 'Zag Rotation'
     # Zag rotation on parent node
     # if the node itself is root node then no rotation needed
-    def __leftrotation(self , n):   # left rotation at node 'n'
-        m = n.right
-        n.right = m.left
-        if m.left != None:
-            m.left.parent = n
+    def __leftrotation(self , x):   # left rotation at node 'x'
+        y = x.right
+        x.right = y.left
+        if y.left != None:
+            y.left.parent = x
 
-        m.parent = n.parent
-        if n.parent == None:
-            self.root = m
-        elif n == n.parent.left:
-            n.parent.left = m
+        y.parent = x.parent
+        if x.parent == None:
+            self.root = y
+        elif x == x.parent.left:
+            x.parent.left = y
         else:
-            n.parent.right = m
-        m.left = n
-        n.parent = m
+            x.parent.right = y
+        y.left = x
+        x.parent = y
 
     # right rotation is called 'Zig Rotation'
     # Zig rotation on parent node
     # if the node itself is root node then no rotation needed
-    def __rightrotation(self, n):       # right rotation at node 'n'
-        y = n.left
-        n.left = y.right
+    def __rightrotation(self, x):       # right rotation at node 'x'
+        y = x.left
+        x.left = y.right
         if y.right != None:
-            y.right.parent = n
+            y.right.parent = x
 
-        y.parent = n.parent
-        if n.parent == None:
+        y.parent = x.parent
+        if x.parent == None:
             self.root = y
-        elif n == n.parent.right:
-            n.parent.right = y
+        elif x == x.parent.right:
+            x.parent.right = y
         else:
-            n.parent.left = y
+            x.parent.left = y
 
-        y.right = n
-        n.parent = y
+        y.right = x
+        x.parent = y
+
 
     """ Splaying - it is basically bringing the required node to the root of the tree
-through series of rotations on the tree because of this splaying property the cost or running time of sply tree is good
-as the most accessed node comes near to the root node due to continous splaying .
-In splaying different rotations are decided by considering the parent node """
+    through series of rotations on the tree because of this splaying property the cost or running time of sply tree is good
+    as the most accessed node comes near to the root node due to continous splaying .
+    In splaying different rotations are decided by considering the parent node """
 
     def __splay(self , n):
         # if n.parent == None - the no splaying is needed as the node is already the root node
@@ -181,9 +182,10 @@ In splaying different rotations are decided by considering the parent node """
     -->> right subtree - larger values
     the the left subtree is splayed such that its maximum value'''
 
-    def Delete(self , value):
-        self.__Delete(self.root , value)
-    def __Delete(self , temp , value):
+    def Delete(self , key):
+        self.__Delete(self.root , key)
+
+    def __Delete(self ,temp,value):
         z = None    # as a pointer variable
         x = None    # tree 1 - subtree
         y = None    # tree 2 - subtree
@@ -218,25 +220,25 @@ In splaying different rotations are decided by considering the parent node """
         self.root = self.__Join(y.left , x)
         y = None
 
+
     '''<<<<< ------------ JOIN Operation ------------- >>>>>'''
 
     # joining two trees or sub-trees(for delete function) x & y
-
-    def __Join(self , x ,y):
+    def __Join(self, s, t):
         # when tree - x is null so no join operation hence it returns the existing tree
-        if x == None:
-            return y
+        if s == None:
+            return t
 
         # when tree - y is null so no join operation hence it returns the existing tree
-        if y == None:
-            return x
+        if t == None:
+            return s
 
         # splaying maximum node of left subtree
-        m = self.Maximum(x)     # extracting minimum node of left subtree
-        self.__splay(m)
-        m.right = y
-        m.parent = x
-        return m
+        x = self.Maximum(s)        # extracting minimum node of left subtree
+        self.__splay(x)
+        x.right = t
+        t.parent = x
+        return x
 
     '''<<<<< ------------ SPLIT Operation ------------- >>>>>'''
     # we will splay the given parameter
@@ -259,6 +261,7 @@ In splaying different rotations are decided by considering the parent node """
         return x , y
 
     '''<<<<< ------------ MINIMUM & MAXIMUM nodes ------------- >>>>>'''
+    
     # minimum element is the left-most leaf node of a tree
     def Minimum(self , node):
         while node.left != None:
@@ -275,6 +278,7 @@ In splaying different rotations are decided by considering the parent node """
 
     # successor of a node
     '''-->> Successor is the left-most in right subtree'''
+    
     def Successor(self , node):
         # condition for checking if right subtree is not NULL
         if node.right != None:
@@ -289,6 +293,7 @@ In splaying different rotations are decided by considering the parent node """
 
     # predecessor of a node
     '''-->> Predecessor is the right-most of the left subtree'''
+    
     def Predecessor(self , node):
         if node.left != None:
             self.Maximum(node.left)
@@ -302,10 +307,11 @@ In splaying different rotations are decided by considering the parent node """
     '''<<<<< ------------ TREE TRAVERSAL ------------- >>>>>'''
 
     #  1. L (C) R -->  tree traversal
+    # wrapper function
+    
     def InOrder(self):
         return self.__InOrder_traverse(self.root)
 
-    #  wrapper function
     def __InOrder_traverse(self , node):
         if node != None:
             self.__InOrder_traverse(node.left)
@@ -313,10 +319,11 @@ In splaying different rotations are decided by considering the parent node """
             self.__InOrder_traverse(node.right)
 
     # 2 . (C) L R --> tree traversal
+    # wrapper function
+    
     def PreOrder(self):
         return self.__PreOrder_traverse(self.root)
 
-    # wrapper funtion
     def __PreOrder_traverse(self , node):
         if node != None:
             print(node.value)
@@ -324,10 +331,11 @@ In splaying different rotations are decided by considering the parent node """
             self.__PreOrder_traverse(node.right)
 
     # 3 . L R (C) --> tree traversal
+    # wrapper function
+    
     def PostOrder(self):
         return self.__PostOrder_traverse(self.root)
 
-    # wrapper function
     def __PostOrder_traverse(self ,  node):
         if node != None:
             self.__PostOrder_traverse(node.left)
@@ -336,66 +344,35 @@ In splaying different rotations are decided by considering the parent node """
 
     '''<<<<< ------------ PRINTING SPLAY TREE ------------- >>>>>'''
 
-
+    # wrapper function
     def print_splaytree(self):
         # space=[0]
         # Pass initial space count as 0
         self.__print(self.root, 0)
 
-    # wrapper function
+    
     def __print(self,root, space):
-        count = [10]
-        # Base case
+        count = [10]    # counter for spacing
         if (root == None):
             return
 
-        # Increase distance between levels
         space += count[0]
 
-        # Process right child first
-        self.__print(root.right, space)
+        self.__print(root.right, space)     # right child
 
-        # Print current node after space
-        # count
         print()
+        
         for i in range(count[0], space):
             print(end=" ")
-        print(root.value)
+            
+        print(root.value)                   # current
 
-        # Process left child
-        self.__print(root.left, space)
-
-
-
-
-
-# s = SplayTree()
-# s.Insert(15)
-# s.Insert(10)
-# s.Insert(17)
-# s.Insert(7)
-# s.Insert(13)
-# s.Insert(16)
-# s.Insert(3)
-# s.print_splaytree()
-# a = 7
-# print("\nSearching {} ....\n".format(a))
-# s.Search(a)
-# s.print_splaytree()
-# d = 13
-# print("\nDeleting {} ....\n".format(d))
-# s.Delete(d)
-# s.print_splaytree()
-# # i = 3
-# print("\nInserting {} ....\n".format(i))
-# s.Insert(3)
-# s.print_splaytree()
-
-
+        self.__print(root.left, space)      # left child
 
 
 
 if __name__ == "__main__":
+  
     s = SplayTree()
     s.Insert(15)
     s.Insert(10)
@@ -403,6 +380,22 @@ if __name__ == "__main__":
     s.Insert(7)
     s.Insert(13)
     s.Insert(16)
-    s.Insert(3)
+    s.Insert(12)
+    s.Insert(14)
+    s.Insert(11)
+    print("Inserting Nodes ....")
     s.print_splaytree()
+
+    d = [11,16,14]
+    for i in range(len(d)):
+        print("\nDeleting {} ....\n".format(d[i]))
+        s.Delete(d[i])
+        s.print_splaytree()
+
+    search = [10,15,13,12]
+    for i in range(len(search)):
+        print("\nSearching {} ....\n".format(search[i]))
+        s.Search(search[i])
+        s.print_splaytree()
+
 
