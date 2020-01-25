@@ -20,6 +20,12 @@ In Search operation the node is found like a normal Binary Ssearch Tree and then
 ## Function 3 - Delete()
 In Delete operation , first the node will be found and then splayed and then deleted , after deletion the trees will be splitted into two by Split() then Join() would be applied.
 
+After this , the parent node of the deleted node will be splayed to the root postion 
+
+
+## Print() 
+It will print tree in a horizontal view  with all its left & right branches in a synchronized way
+
 ## Advantages Of Splay Tree :
 1 . It has "Caching Effect" as frequently accessed elements are always easily accessible due to contionus Splaying , it is used to implement Caches , Memory allocators etc.
 
