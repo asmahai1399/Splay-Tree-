@@ -32,7 +32,7 @@ It will print tree in a horizontal view  with all its left & right branches in a
 2 . Easy implementation , unlike AVL & RB Tree it doesnt stores extra information
 
 ## Disadvantages Of Splay Tree :
-1 . As they are not strictly balanced so height can become linear or skewed which makes O(n) but it happens in very rare cases
+1 . As they are not strictly balanced so height can become linear or skewed(right or left) which changes its time complexity to O(n) but it happens in very rare cases
 
 ## References : 
 1 . https://en.wikipedia.org/wiki/Splay_tree
