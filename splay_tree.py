@@ -340,7 +340,7 @@ class SplayTree:
         if node != None:
             self.__PostOrder_traverse(node.left)
             self.__PostOrder_traverse(node.right)
-            print(node.data)
+            print(node.value)
 
     '''<<<<< ------------ PRINTING SPLAY TREE ------------- >>>>>'''
 
