@@ -274,36 +274,6 @@ class SplayTree:
             node = node.right
         return node
 
-    '''<<<<< ------------ SUCCESSOR & PREDECESSOR ------------- >>>>>'''
-
-    # successor of a node
-    '''-->> Successor is the left-most in right subtree'''
-    
-    def Successor(self , node):
-        # condition for checking if right subtree is not NULL
-        if node.right != None:
-            self.Minimum(node.right)
-
-        x = node.parent
-        while x != None and node == x.right:
-            node = x
-            x = x.parent
-        return x
-
-
-    # predecessor of a node
-    '''-->> Predecessor is the right-most of the left subtree'''
-    
-    def Predecessor(self , node):
-        if node.left != None:
-            self.Maximum(node.left)
-
-        x = node.parent
-        while x != None and node == x.left:
-            node = x
-            x = x.parent
-        return x
-
     '''<<<<< ------------ TREE TRAVERSAL ------------- >>>>>'''
 
     #  1. L (C) R -->  tree traversal
